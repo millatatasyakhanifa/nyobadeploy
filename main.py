@@ -1,4 +1,5 @@
 # Import Library
+
 import requests
 from keras.preprocessing import image
 import urllib.request
@@ -15,7 +16,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
 print(os.getcwd())
-model = keras.models.load_model("model_A2_.h5")
+model = keras.models.load_model("model_A2.h5")
 label = ["Hourse", "Human"]
 
 app = Flask(__name__)
@@ -23,7 +24,7 @@ app = Flask(__name__)
 
 def predict_label(img):
     i = np.asarray(img) / 255.0
-    i = i.reshape(150, 150, 3)
+    i = i.reshape(1, 150, 150, 3)
     p = model.predict(i)
     result = label[np.argmax(p)]
     return result
